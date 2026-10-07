@@ -350,7 +350,7 @@
       <div class="bill-summary">
         <div class="bill-stat">
           <div class="bill-stat-value gradient" id="bill-total-mesa">$0</div>
-          <div class="bill-stat-label">Total mesa</div>
+          <div class="bill-stat-label">Falta por pagar</div>
         </div>
         <div class="bill-stat">
           <div class="bill-stat-value green" id="bill-my-total">$0</div>
@@ -510,7 +510,7 @@
     function fmt(n) { return "$" + n.toLocaleString("es-CL"); }
     function getInitials(name) { var p = name.split(" "); return (p[0][0] + (p[1] ? p[1][0] : "")).toUpperCase(); }
     function getFirstName(name) { return name.split(" ")[0]; }
-    function getTableTotal() { return tableBill.reduce(function(s,i){ return s + i.price * i.tableQty; }, 0); }
+    function getTableTotal() { return tableBill.reduce(function(s,i){ return s + (i.tableQty - i.claimed) * i.price; }, 0); }
     function getTotalItems() { return tableBill.reduce(function(s,i){ return s + i.tableQty; }, 0); }
 
     // === NAVIGATION ===
